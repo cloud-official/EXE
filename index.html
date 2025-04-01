@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIXU EXE</title>
+    <title>TIXU Executor</title>
+    <meta name="description" content="TIXU Executor - The best Lua executor with unparalleled performance and features.">
+    <meta name="keywords" content="Lua Executor, Script Executor, Game Hacks, Scripting Tool">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -11,11 +13,12 @@
             --neon: #00ff00;
             --glow: rgba(0, 255, 0, 0.3);
             --dark: #000000;
+            --text: white;
         }
 
         body {
             background: var(--dark);
-            color: white;
+            color: var(--text);
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 20px;
@@ -29,24 +32,30 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 20% 20%, rgba(0, 255, 0, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 255, 0, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 20%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 0, 0.1) 0%, transparent 50%);
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 0.8; }
+            to { opacity: 0.5; }
         }
 
         header {
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
-            border: 1px solid var(--glow);
-            box-shadow: 0 0 15px var(--glow);
+            border: 2px solid var(--glow);
+            box-shadow: 0 0 20px var(--glow);
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--neon);
-            text-shadow: 0 0 10px var(--glow);
+            text-shadow: 0 0 15px var(--glow);
         }
 
         .tab-buttons {
@@ -55,13 +64,13 @@
             flex-wrap: wrap;
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
-            border: 1px solid var (--glow);
+            border: 1px solid var(--glow);
         }
 
         .tab-button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background: transparent;
             border: 2px solid var(--neon);
             color: var(--neon);
@@ -72,112 +81,53 @@
 
         .tab-button:hover, .tab-button.active {
             background: var(--neon);
-            color: black;
+            color: var(--dark);
+            transform: scale(1.05);
         }
 
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .link-card {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--glow);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .buy-button {
-            display: inline-block;
-            padding: 15px 30px;
-            margin-top: 10px;
-            font-size: 1.2rem;
-            color: black;
-            background: var(--neon);
-            border-radius: 10px;
-            text-decoration: none;
+        .search-bar {
+            margin: 15px 0;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            border: 2px solid var(--neon);
+            background: transparent;
+            color: var(--text);
+            outline: none;
             transition: 0.3s;
         }
 
-        .buy-button:hover {
-            background: var(--dark);
-            color: var(--neon);
+        .search-bar:focus {
+            border-color: var(--glow);
+            box-shadow: 0 0 8px var(--glow);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .script-item {
+            margin: 10px 0;
         }
+
     </style>
 </head>
 <body>
     <div class="bg-animation"></div>
-
     <header>
-        <h1>TIXU EXE</h1>
+        <h1>Welcome to TIXU Executor</h1>
     </header>
-
     <div class="tab-buttons">
-        <button class="tab-button" data-tab="features"><i class="fa-solid fa-list"></i> Features</button>
-        <button class="tab-button" data-tab="scripts"><i class="fa-solid fa-code"></i> Scripts</button>
-        <button class="tab-button" data-tab="downloading"><i class="fa-solid fa-download"></i> Downloading</button>
+        <button class="tab-button" data-tab="features">Features</button>
+        <button class="tab-button" data-tab="scripts">Scripts</button>
+        <button class="tab-button" data-tab="downloading">Downloading</button>
     </div>
-
-    <div class="tab-content" id="features">
-        <div class="link-card">
-            <h2>Why Choose Our Lua Executor?</h2>
-            <p>Our Lua executor stands out from the competition with its unparalleled performance and user-friendly interface. Key features:</p>
-            <ul>
-                <li><i class="fa-solid fa-file"></i> Auto-save for developers.</li>
-                <li><i class="fa-solid fa-shield"></i> No viruses, just execution.</li>
-                <li><i class="fa-solid fa-user"></i> User-Friendly UI.</li>
-                <li><i class="fa-solid fa-sync-alt"></i> Regular updates.</li>
-            </ul>
-        </div>
-    </div>
-
     <div class="tab-content" id="scripts">
-        <div class="link-card">
-            <h2>Script Collection</h2>
-            <p>Use these scripts with the executor:</p>
-
-            <div class="script">
-                <h3><i class="fa-solid fa-terminal"></i> Infinite Yield</h3>
-                <p>Powerful admin script with tons of commands.</p>
-                <a href="path/to/pro/purchase" class="buy-button">Buy Pro</a>
-            </div>
-
-            <div class="script">
-                <h3><i class="fa-solid fa-terminal"></i> Remote Spy</h3>
-                <p>Spies on remote events and functions.</p>
-                <a href="path/to/pro/purchase" class="buy-button">Buy Pro</a>
-            </div>
+        <input type="text" id="searchBar" class="search-bar" placeholder="Search scripts...">
+        <div id="scriptList">
+            <div class="script-item">Infinite Yield</div>
+            <div class="script-item">Remote Spy</div>
+            <div class="script-item">Admin Commands</div>
+            <div class="script-item">Speed Hack</div>
         </div>
     </div>
-
-    <div class="tab-content" id="downloading">
-        <div class="link-card">
-            <h2>How to Download</h2>
-            <p>Follow these steps:</p>
-            <ol>
-                <li>Click the download button.</li>
-                <li>Wait for the download to complete.</li>
-                <li>Open the file and follow installation steps.</li>
-                <li>Disable antivirus if it blocks the file.</li>
-            </ol>
-            <a href="path/to/download" class="download-button">Download Now</a>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 TIXU Executor. All rights reserved.</p>
-    </footer>
-
     <script>
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', () => {
@@ -185,6 +135,17 @@
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 button.classList.add('active');
                 document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+
+        const searchBar = document.getElementById('searchBar');
+        const scriptItems = document.querySelectorAll('.script-item');
+
+        searchBar.addEventListener('input', () => {
+            const filter = searchBar.value.toLowerCase();
+            scriptItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? '' : 'none';
             });
         });
     </script>
