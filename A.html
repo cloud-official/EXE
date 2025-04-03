@@ -5,77 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Collection</title>
     <style>
-        /* From Uiverse.io by satyamchaudharydev */ 
-        /* this card is inspired from this - https://georgefrancis.dev/ */
-        /* From Uiverse.io by JohnnyCSilva */ 
         body {
-            background-image: url('https://img.freepik.com/premium-vector/abstract-blue-background-with-lines_1109882-8541.jpg?w=1060');
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEzS66ogDcPUdQL6gtEJpXxE22fo1UVHZ-Iw&s');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
             margin: 0;
             padding: 0;
+            position: relative;
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
+        
+        /* Adding an overlay for better readability */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: -1;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        h1 a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        h1 a:hover {
+            opacity: 0.7;
+        }
+        
         .container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             padding: 20px;
+            justify-content: center;
         }
-        .card {
-            width: 100%;
-            max-width: 290px;
-            height: 70px;
-            background: #353535;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: left;
-            backdrop-filter: blur(10px);
-            transition: 0.5s ease-in-out;
-            margin-bottom: 10px;
-        }
-        .card:hover {
-            cursor: pointer;
-            transform: scale(1.05);
-        }
-        .img {
-            width: 50px;
-            height: 50px;
-            margin-left: 10px;
-            border-radius: 10px;
-            background: linear-gradient(#d7cfcf, #9198e5);
-        }
-        .card:hover > .img {
-            transition: 0.5s ease-in-out;
-            background: linear-gradient(#9198e5, #712020);
-        }
-        .textBox {
-            width: calc(100% - 90px);
-            margin-left: 10px;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-        }
-        .textContent {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .span {
-            font-size: 10px;
-        }
-        .h1 {
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .p {
-            font-size: 12px;
-            font-weight: lighter;
-        }
+        
     </style>
 </head>
 <body>
-    <h1>Game Collection</h1>
+    <h1><a href="https://www.apple.com" target="_blank">Game Collection</a></h1>
     <div class="container">
         <div class="card">
             <div class="img"></div>
@@ -97,7 +79,6 @@
                 <p class="p">Xhattmahs is not attacking your base!</p>
             </div>
         </div>
-        <!-- Add more cards as needed -->
     </div>
 </body>
 </html>
