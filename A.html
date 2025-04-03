@@ -7,207 +7,73 @@
     <style>
         /* From Uiverse.io by satyamchaudharydev */ 
         /* this card is inspired form this - https://georgefrancis.dev/ */
+/* From Uiverse.io by JohnnyCSilva */ 
+.card {
+  width: 100%;
+  max-width: 290px;
+  height: 70px;
+  background: #353535;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  backdrop-filter: blur(10px);
+  transition: 0.5s ease-in-out;
+}
 
-        body {
-            font-family: "Arial", sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
 
-        header {
-            width: 100%;
-            background-color: #7257fa;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0px 4px 8px 0px rgb(0 0 0 / 10%);
-        }
+.img {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background: linear-gradient(#d7cfcf, #9198e5);
+}
 
-        .search-bar {
-            margin: 1rem 0;
-            width: 80%;
-            max-width: 400px;
-        }
+.card:hover > .img {
+  transition: 0.5s ease-in-out;
+  background: linear-gradient(#9198e5, #712020);
+}
 
-        .search-bar input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 2px solid #7257fa;
-            border-radius: 0.25rem;
-        }
+.textBox {
+  width: calc(100% - 90px);
+  margin-left: 10px;
+  color: white;
+  font-family: 'Poppins' sans-serif;
+}
 
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            padding: 1rem;
-        }
+.textContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-        .card {
-            --border-radius: 0.75rem;
-            --primary-color: #55efc4; /* Apple green color */
-            --secondary-color: #2d3436; /* Dark color for text */
-            width: 210px;
-            padding: 1rem;
-            cursor: pointer;
-            border-radius: var(--border-radius);
-            background: #f1f1f3;
-            box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 3%);
-            position: relative;
-            transition: transform 0.2s;
-        }
+.span {
+  font-size: 10px;
+}
 
-        .card > * + * {
-            margin-top: 1.1em;
-        }
+.h1 {
+  font-size: 16px;
+  font-weight: bold;
+}
 
-        .card .card__content {
-            color: var(--secondary-color);
-            font-size: 0.86rem;
-        }
-
-        .card .card__title {
-            padding: 0;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .card .card__date {
-            color: #6e6b80;
-            font-size: 0.8rem;
-        }
-
-        .card .card__arrow {
-            position: absolute;
-            background: var(--primary-color);
-            padding: 0.4rem;
-            border-top-left-radius: var(--border-radius);
-            border-bottom-right-radius: var(--border-radius);
-            bottom: 0;
-            right: 0;
-            transition: 0.2s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card svg {
-            transition: 0.2s;
-        }
-
-        /* hover */
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card:hover .card__title {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        .card:hover .card__arrow {
-            background: #111;
-        }
-
-        .card:hover .card__arrow svg {
-            transform: translateX(3px);
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #55efc4; /* Apple green color */
-            color: #fff;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            box-shadow: 0px 4px 8px 0px rgb(0 0 0 / 10%);
-            display: none;
-            align-items: center;
-        }
-
-        .notification.visible {
-            display: flex;
-        }
-
-        .notification-icon {
-            margin-right: 0.5rem;
-        }
+.p {
+  font-size: 12px;
+  font-weight: lighter;
+}
     </style>
-</head>
-<body>
-    <header>
-        <h1>Card Collection</h1>
-    </header>
-    <div class="search-bar">
-        <input type="text" placeholder="Search cards...">
+<!-- From Uiverse.io by JohnnyCSilva --> 
+<div class="card">
+  <div class="img"></div>
+  <div class="textBox">
+    <div class="textContent">
+      <p class="h1">Clans of Clash</p>
+      <span class="span">12 min ago</span>
     </div>
-    <div class="card-container">
-        <div class="card">
-            <h3 class="card__title">TIXU</h3>
-            <p class="card__content">NEW SCRIPT.</p>
-            <div class="card__date">April 15, 2022</div>
-            <div class="card__arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
-                    <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3[...]
-                </svg>
-            </div>
-        </div>
-        <!-- Additional test cards -->
-        <div class="card">
-            <h3 class="card__title">Test Card 1</h3>
-            <p class="card__content">Content for test card 1.</p>
-            <div class="card__date">April 3, 2025</div>
-            <div class="card__arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
-                    <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3[...]
-                </svg>
-            </div>
-        </div>
-        <div class="card">
-            <h3 class="card__title">Test Card 2</h3>
-            <p class="card__content">Content for test card 2.</p>
-            <div class="card__date">April 3, 2025</div>
-            <div class="card__arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
-                    <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3[...]
-                </svg>
-            </div>
-        </div>
-        <div class="card">
-            <h3 class="card__title">Test Card 3</h3>
-            <p class="card__content">Content for test card 3.</p>
-            <div class="card__date">April 3, 2025</div>
-            <div class="card__arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
-                    <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3[...]
-                </svg>
-            </div>
-        </div>
-    </div>
-    <div class="notification" id="notification">
-        <span class="notification-icon">🍎</span>
-        <span class="notification-message">This is an Apple-like notification!</span>
-    </div>
-    <script>
-        // Function to show notification
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            const notificationMessage = notification.querySelector('.notification-message');
-            notificationMessage.textContent = message;
-            notification.classList.add('visible');
-            setTimeout(() => {
-                notification.classList.remove('visible');
-            }, 3000);
-        }
-
-        // Example usage of the notification
-        showNotification('Welcome to the Card Collection!');
-    </script>
-</body>
-</html>
+    <p class="p">Xhattmahs is not attacking your base!</p>
+  <div>
+</div></div></div>
