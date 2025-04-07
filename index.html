@@ -3,75 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabbed Sections Example</title>
+    <title>TIXU Executor</title>
+    <meta name="description" content="TIXU Executor - The best Lua executor with unparalleled performance and features.">
+    <meta name="keywords" content="Lua Executor, Script Executor, Game Hacks, Scripting Tool">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --neon: #00ff00;
+            --glow: rgba(0, 255, 0, 0.3);
+            --dark: #003300;
+            --text: #00ff00;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem; /* Smaller text size */
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 20%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 0, 0.1) 0%, transparent 50%);
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 0.8; }
+            to { opacity: 0.5; }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(0, 51, 0, 0.7);
+            border-radius: 15px;
+            border: 2px solid var(--glow);
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--neon);
+            text-shadow: 0 0 15px var(--glow);
+        }
+
+        .description {
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 2rem;
+            font-size: 0.8rem; /* Smaller description text */
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
         .tab {
-            display: inline-block;
-            padding: 10px;
+            padding: 10px 20px;
             cursor: pointer;
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-bottom: none;
-            margin-right: 5px;
+            background: rgba(0, 51, 0, 0.7);
+            border: 1px solid var(--neon);
+            border-radius: 8px 8px 0 0;
+            margin: 0 5px;
+        }
+
+        .tab.active {
+            background: var(--neon);
+            color: var(--dark);
         }
 
         .tab-content {
             display: none;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-top: none;
+            padding: 15px;
+            background: rgba(0, 51, 0, 0.7);
+            border-radius: 0 8px 8px 8px;
+            border: 1px solid var(--glow);
         }
 
-        .active {
+        .tab-content.active {
             display: block;
         }
 
-        .active-tab {
-            background-color: #fff;
-            border-bottom: 1px solid #fff;
+        .content-wrapper {
+            padding: 15px;
+            background: rgba(0, 51, 0, 0.7);
+            border-radius: 15px;
+            border: 1px solid var(--glow);
+        }
+
+        .search-bar {
+            margin: 15px 0;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            border: 2px solid var(--neon);
+            background: transparent;
+            color: var(--text);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--glow);
+            box-shadow: 0 0 8px var(--glow);
+        }
+
+        .script-item {
+            margin: 10px 0;
+            background: rgba(0, 51, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .script-item:hover {
+            background: rgba(0, 255, 0, 0.1);
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
-    <div>
-        <div class="tab" onclick="openTab(event, 'section1')">Section 1</div>
-        <div class="tab" onclick="openTab(event, 'section2')">Section 2</div>
-        <div class="tab" onclick="openTab(event, 'section3')">Section 3</div>
+    <div class="bg-animation"></div>
+    <header>
+        <h1>Welcome to TIXU Executor</h1>
+    </header>
+    <div class="description">
+        <p>TIXU Executor is the ultimate Lua executor, offering unmatched performance and a wide range of features for your scripting needs.</p>
     </div>
-
-    <div id="section1" class="tab-content active">
-        <h2>Section 1</h2>
-        <p>This is the content for section 1.</p>
+    <div class="tabs">
+        <div class="tab active" data-tab="tab-1">Home</div>
+        <div class="tab" data-tab="tab-2">Scripts</div>
+        <div class="tab" data-tab="tab-3">Settings</div>
     </div>
-    <div id="section2" class="tab-content">
-        <h2>Section 2</h2>
-        <p>This is the content for section 2.</p>
+    <div class="tab-content active" id="tab-1">
+        <div class="content-wrapper">
+            <p>Welcome to the home tab. Here you can find information about TIXU Executor.</p>
+        </div>
     </div>
-    <div id="section3" class="tab-content">
-        <h2>Section 3</h2>
-        <p>This is the content for section 3.</p>
+    <div class="tab-content" id="tab-2">
+        <div class="content-wrapper">
+            <input type="text" id="searchBar" class="search-bar" placeholder="Search scripts...">
+            <div id="scriptList">
+                <div class="script-item">Infinite Yield</div>
+                <div class="script-item">Remote Spy</div>
+                <div class="script-item">Admin Commands</div>
+                <div class="script-item">Speed Hack</div>
+            </div>
+        </div>
     </div>
-
+    <div class="tab-content" id="tab-3">
+        <div class="content-wrapper">
+            <p>Settings tab content goes here.</p>
+        </div>
+    </div>
     <script>
-        function openTab(event, sectionId) {
-            var i, tabcontent, tabs;
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
 
-            tabs = document.getElementsByClassName("tab");
-            for (i = 0; i < tabs.length; i++) {
-                tabs[i].className = tabs[i].className.replace(" active-tab", "");
-            }
+                const target = tab.getAttribute('data-tab');
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === target) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
 
-            document.getElementById(sectionId).style.display = "block";
-            event.currentTarget.className += " active-tab";
-        }
+        const searchBar = document.getElementById('searchBar');
+        const scriptItems = document.querySelectorAll('.script-item');
 
-        // Set the default active tab
-        document.getElementsByClassName("tab")[0].click();
+        searchBar.addEventListener('input', () => {
+            const filter = searchBar.value.toLowerCase();
+            scriptItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
     </script>
 </body>
 </html>
