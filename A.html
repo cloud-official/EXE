@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Script Display</title>
+  <title>Scripts</title>
   <style>
     :root {
       --accent-color: #00ff00;
@@ -114,15 +114,15 @@
 <body>
 
   <header>
-    <h1>Script Display</h1>
+    <h1>Fly Pad</h1>
   </header>
 
   <a href="index.html" class="back-home-btn">Back to Home</a>
 
   <div class="script-box">
-    <h2>Murder Mystery 2</h2>
+    <h2>Universal</h2>
     <p class="script-meta">
-      Uploaded by <span style="color: var(--accent-color); font-weight: bold;">Athergaming</span> • 1 week ago
+      Uploaded by <span style="color: var(--accent-color); font-weight: bold;">Tixu</span> • ♥
     </p>
     <div class="script-code-box">
       <code id="scriptCode">
@@ -139,7 +139,7 @@
       const code = Array.from(document.querySelectorAll('#scriptCode span')).map(span => span.textContent).join('\n');
       navigator.clipboard.writeText(code);
       btn.innerText = "Copied!";
-      setTimeout(() => btn.innerText = "Copy", 1500);
+      setTimeout(() => btn.innerText = "Copy", 1500000);
     }
   </script>
 
