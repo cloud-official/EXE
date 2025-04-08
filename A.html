@@ -62,10 +62,20 @@
       color: var(--accent-color);
       text-decoration: none;
       font-weight: bold;
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background: #333;
+      border: 2px solid var(--accent-color);
+      border-radius: var(--border-radius);
+      text-align: center;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
     }
 
     .script-actions a:hover {
-      text-decoration: underline;
+      background: var(--accent-color);
+      color: #000;
+      transform: scale(1.1);
     }
 
     .script-code-box {
