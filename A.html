@@ -60,14 +60,15 @@
 
     .script-code-box {
       background: #1a1a1a;
-      padding: 25px;
+      padding: 40px;
       border-radius: var(--border-radius);
       font-family: monospace;
       color: #0f0;
       position: relative;
       border: 2px solid var(--accent-color);
       box-shadow: 0 0 15px var(--accent-color);
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
     }
 
     .copy-btn {
@@ -77,9 +78,10 @@
       background: var(--accent-color);
       color: black;
       border: none;
-      padding: 5px 10px;
+      padding: 10px 20px;
       border-radius: var(--border-radius);
       cursor: pointer;
+      font-size: 1rem;
     }
 
     .script-description {
@@ -111,6 +113,27 @@
     .footer a:hover {
       text-decoration: underline;
     }
+
+    .back-home-btn {
+      display: block;
+      width: 200px;
+      margin: 0 auto 20px;
+      padding: 15px;
+      background: var(--accent-color);
+      color: black;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px var(--accent-color);
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .back-home-btn:hover {
+      background: #0f0;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -118,6 +141,8 @@
   <header>
     <h1>Script Display</h1>
   </header>
+
+  <a href="index.html" class="back-home-btn">Back to Home</a>
 
   <div class="script-box">
     <h2>Murder Mystery 2</h2>
