@@ -3,52 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TIXU Executor</title>
-  <meta name="description" content="TIXU Executor - The best Lua executor with unparalleled performance and features.">
-  <meta name="keywords" content="Lua Executor, Script Executor, Game Hacks, Scripting Tool">
+  <title>TIXU HUB</title>
+  <meta name="description" content="TIXU Executor - The best Lua executor.">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
       --neon: #00ff00;
       --glow: rgba(0, 255, 0, 0.3);
       --dark: #001a00;
       --text: #00ff00;
+      --box: rgba(0, 51, 0, 0.7);
     }
 
     body {
       background: var(--dark);
       color: var(--text);
       font-family: 'Poppins', sans-serif;
-      font-size: 0.9rem;
       margin: 0;
       padding: 20px;
       min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(circle at 20% 20%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(0, 255, 0, 0.1) 0%, transparent 50%);
-      animation: pulse 3s infinite alternate;
-    }
-
-    @keyframes pulse {
-      from { opacity: 0.8; }
-      to { opacity: 0.5; }
     }
 
     header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       padding: 2rem;
-      background: rgba(0, 51, 0, 0.7);
+      background: var(--box);
       border-radius: 15px;
       border: 2px solid var(--glow);
       box-shadow: 0 0 20px var(--glow);
@@ -57,22 +37,7 @@
     header h1 {
       font-size: 3rem;
       color: var(--neon);
-      animation: flicker 3s infinite alternate;
       text-shadow: 0 0 15px var(--glow), 0 0 30px var(--glow);
-    }
-
-    @keyframes flicker {
-      0% { opacity: 1; }
-      90% { opacity: 0.8; }
-      95% { opacity: 1; }
-      100% { opacity: 0.9; }
-    }
-
-    .description {
-      text-align: center;
-      color: var(--text);
-      margin-bottom: 2rem;
-      font-size: 0.8rem;
     }
 
     .tabs {
@@ -84,11 +49,10 @@
     .tab {
       padding: 10px 20px;
       cursor: pointer;
-      background: rgba(0, 51, 0, 0.7);
+      background: var(--box);
       border: 1px solid var(--neon);
       border-radius: 8px 8px 0 0;
       margin: 0 5px;
-      transition: background 0.3s, color 0.3s;
     }
 
     .tab:hover, .tab.active {
@@ -99,15 +63,9 @@
     .tab-content {
       display: none;
       padding: 15px;
-      background: rgba(0, 51, 0, 0.7);
+      background: var(--box);
       border-radius: 0 8px 8px 8px;
       border: 1px solid var(--glow);
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .tab-content.active {
@@ -116,41 +74,9 @@
 
     .content-wrapper {
       padding: 15px;
-      background: rgba(0, 51, 0, 0.7);
+      background: var(--box);
       border-radius: 15px;
       border: 1px solid var(--glow);
-    }
-
-    .search-bar {
-      margin: 15px 0;
-      padding: 10px;
-      width: 100%;
-      max-width: 400px;
-      border-radius: 8px;
-      border: 2px solid var(--neon);
-      background: transparent;
-      color: var(--text);
-      outline: none;
-    }
-
-    .search-bar:focus {
-      border-color: var(--glow);
-      box-shadow: 0 0 8px var(--glow);
-    }
-
-    .script-item {
-      margin: 10px 0;
-      background: rgba(0, 51, 0, 0.5);
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 1px solid var(--neon);
-      transition: 0.3s ease;
-    }
-
-    .script-item:hover {
-      background: rgba(0, 255, 0, 0.1);
-      transform: scale(1.02) rotateX(3deg) rotateY(3deg);
     }
 
     .color-picker-wrapper {
@@ -159,13 +85,20 @@
 
     label {
       display: block;
-      margin: 10px 0 5px;
+      margin-top: 15px;
+    }
+
+    input[type="color"] {
+      margin-top: 5px;
+      height: 30px;
+      width: 60px;
+      border: none;
+      outline: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
-
   <header>
     <h1>TIXU Executor</h1>
   </header>
@@ -204,12 +137,23 @@
     </div>
   </div>
 
+  
+
+  <div class="tab-content" id="tab-2">
+    <div class="content-wrapper">
+      <p>Script section content goes here.</p>
+    </div>
+  </div>
+
   <div class="tab-content" id="tab-3">
     <div class="content-wrapper">
-      <h2 style="color: var(--neon);"><i class="fas fa-palette"></i> Theme Settings</h2>
+      <h2>Customize Theme</h2>
       <div class="color-picker-wrapper">
-        <label for="colorPicker">Choose Neon Color:</label>
-        <input type="color" id="colorPicker" value="#00ff00">
+        <label>Neon Color: <input type="color" id="neonColor" /></label>
+        <label>Text Color: <input type="color" id="textColor" /></label>
+        <label>Background Color: <input type="color" id="bgColor" /></label>
+        <label>Box Background: <input type="color" id="boxColor" /></label>
+        <label>Glow Color: <input type="color" id="glowColor" /></label>
       </div>
     </div>
   </div>
@@ -217,55 +161,49 @@
   <script>
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
-
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         const target = tab.getAttribute('data-tab');
-        tabContents.forEach(content => {
-          content.classList.remove('active');
-          if (content.id === target) content.classList.add('active');
+        tabContents.forEach(c => {
+          c.classList.remove('active');
+          if (c.id === target) c.classList.add('active');
         });
       });
     });
 
-    const searchBar = document.getElementById('searchBar');
-    const scriptItems = document.querySelectorAll('.script-item');
+    const settings = {
+      neonColor: "--neon",
+      textColor: "--text",
+      bgColor: "--dark",
+      boxColor: "--box",
+      glowColor: "--glow"
+    };
 
-    searchBar?.addEventListener('input', () => {
-      const filter = searchBar.value.toLowerCase();
-      scriptItems.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(filter) ? '' : 'none';
+    for (const [id, cssVar] of Object.entries(settings)) {
+      const input = document.getElementById(id);
+      const stored = localStorage.getItem(id);
+      if (stored) {
+        document.documentElement.style.setProperty(cssVar, stored);
+        input.value = stored;
+      }
+      input.addEventListener('input', () => {
+        const val = input.value;
+        document.documentElement.style.setProperty(cssVar, val);
+        if (cssVar === '--glow') {
+          document.documentElement.style.setProperty(cssVar, hexToRgba(val, 0.3));
+        }
+        localStorage.setItem(id, val);
       });
-    });
-
-    const colorPicker = document.getElementById('colorPicker');
-    const updateColors = (color) => {
-      document.documentElement.style.setProperty('--neon', color);
-      document.documentElement.style.setProperty('--glow', `${hexToRgba(color, 0.3)}`);
-      document.documentElement.style.setProperty('--text', color);
     }
 
-    const hexToRgba = (hex, alpha) => {
+    function hexToRgba(hex, alpha) {
       const bigint = parseInt(hex.slice(1), 16);
       const r = (bigint >> 16) & 255;
       const g = (bigint >> 8) & 255;
       const b = bigint & 255;
       return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    }
-
-    colorPicker.addEventListener('input', () => {
-      const color = colorPicker.value;
-      updateColors(color);
-      localStorage.setItem('tixuColor', color);
-    });
-
-    const savedColor = localStorage.getItem('tixuColor');
-    if (savedColor) {
-      colorPicker.value = savedColor;
-      updateColors(savedColor);
     }
   </script>
 </body>
