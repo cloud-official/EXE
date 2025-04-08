@@ -1,87 +1,166 @@
-<div class="content-wrapper" style="margin-top: 2rem;">
-  <h2 style="color: var(--neon); font-size: 2rem;">Murder Mystery 2</h2>
-  <p>Uploaded by <strong style="color: var(--neon);">Athergaming</strong>
-    <span style="background: var(--neon); color: var(--dark); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem;">Verified</span>
-  </p>
-  <p style="opacity: 0.8;">Uploaded 1 week ago</p>
-  
-  <div style="margin: 1rem 0;">
-    <a href="https://www.roblox.com/games/142823291/Murder-Mystery-2" target="_blank" style="color: var(--neon); text-decoration: underline;">Play Game</a>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script Display</title>
+  <style>
+    /* General Box Styling */
+    .script-box {
+      background: #111;
+      border: 2px solid #39FF14;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 25px #39FF14;
+    }
 
-  <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-    <button style="padding: 10px 20px; background: var(--neon); color: var(--dark); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-      Execute Script
-    </button>
-    <button onclick="copyCode()" style="padding: 10px 20px; background: transparent; color: var(--neon); border: 1px solid var(--neon); border-radius: 6px; font-weight: bold; cursor: pointer;">
-      Copy Script
-    </button>
-    <button style="padding: 10px 20px; background: rgba(0,255,0,0.1); color: var(--neon); border: 1px solid var(--neon); border-radius: 6px; cursor: pointer;">
-      Favorite
-    </button>
-  </div>
+    /* Script Header */
+    .script-header {
+      margin-bottom: 15px;
+    }
 
-  <pre id="codeBox" style="background: #002200; padding: 15px; border: 1px solid var(--glow); border-radius: 8px; overflow-x: auto; color: var(--text); font-family: monospace; font-size: 0.9rem;">
-print("hi")
-  </pre>
+    .script-title {
+      color: #39FF14;
+      font-size: 1.7rem;
+      margin-bottom: 5px;
+    }
 
-  <div style="margin-top: 1.5rem;">
-    <p style="color: var(--text); font-size: 0.9rem;"><strong>Discord:</strong> <a href="https://discord.gg/6q27hWBaxB" target="_blank" style="color: var(--neon); text-decoration: underline;">https://discord.gg/6q27hWBaxB</a></p>
-    <p style="color: var(--text); margin-top: 10px;"><strong>Not Supported:</strong> XENO, CELERY</p>
-    <p style="color: var(--text); margin-top: 5px;"><strong>Works On:</strong> Solara</p>
-  </div>
+    .script-meta {
+      color: #bbb;
+      font-size: 0.9rem;
+    }
 
-  <h3 style="color: var(--neon); margin-top: 2rem;">Current Features</h3>
-  <ul style="columns: 2; list-style: none; padding-left: 0; color: var(--text); font-size: 0.9rem;">
-    <li>Auto Farm Coins</li>
-    <li>Player ESP</li>
-    <li>Tp to Gun</li>
-    <li>Murderer Kill All</li>
-    <li>Sheriff Auto Aim</li>
-    <li>Gun Drop Notification</li>
-    <li>Aim Bot</li>
-    <li>Fly Jump</li>
-    <li>Fake Die</li>
-    <li>Sit On Player</li>
-    <li>Attach to Player</li>
-    <li>No Clip</li>
-    <li>TP Tool</li>
-    <li>Swim</li>
-    <li>Speed Hack</li>
-    <li>Auto Reset</li>
-  </ul>
+    .username {
+      color: #39FF14;
+      font-weight: 600;
+    }
 
-  <h3 style="color: var(--neon); margin-top: 2rem;">Roadmap</h3>
-  <ul style="color: var(--text); font-size: 0.9rem;">
-    <li>Add Crates</li>
-    <li>Silent Aim (Requested)</li>
-    <li>Webhook support</li>
-    <li>User Suggestions</li>
-  </ul>
+    .verified-badge {
+      background: #39FF14;
+      color: black;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      margin-left: 6px;
+    }
 
-  <div style="margin-top: 2rem;">
-    <h3 style="color: var(--neon);">Comments</h3>
-    <div style="background: #001100; padding: 10px; border: 1px solid var(--glow); border-radius: 8px; margin-bottom: 10px;">
-      <strong style="color: var(--neon);">elonlostmoney</strong> <span style="opacity: 0.5;">· 5d ago</span>
-      <p style="margin: 5px 0;">Any webhook feature?</p>
+    /* Script Action Section */
+    .script-actions {
+      margin-top: 15px;
+    }
+
+    .play-game-link {
+      color: #39FF14;
+      text-decoration: underline;
+    }
+
+    /* Code Box Section */
+    .script-code-box {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 8px;
+      position: relative;
+      font-family: monospace;
+      color: #0f0;
+      font-size: 1rem;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #39FF14;
+      color: black;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Script Description */
+    .script-description {
+      margin-top: 10px;
+    }
+
+    .description-title {
+      color: #39FF14;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .description-text {
+      color: #ccc;
+    }
+
+    /* Script Tags Section */
+    .script-tags {
+      margin-top: 15px;
+    }
+
+    .tags-title {
+      color: #39FF14;
+      font-weight: bold;
+    }
+
+    .tags-list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+
+    .tag {
+      background: #39FF14;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="script-box">
+    <div class="script-header">
+      <h2 class="script-title">Murder Mystery 2</h2>
+      <p class="script-meta">
+        Uploaded by <span class="username">Athergaming</span>
+        <span class="verified-badge">Verified</span> • 1 week ago
+      </p>
     </div>
-    <div style="background: #001100; padding: 10px; border: 1px solid var(--glow); border-radius: 8px;">
-      <strong style="color: var(--neon);">Athergaming</strong> <span style="opacity: 0.5;">· 5d ago</span> <span style="background: var(--neon); color: var(--dark); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem;">Verified</span>
-      <p style="margin: 5px 0;">I will add it</p>
+
+    <div class="script-actions">
+      <a href="https://www.roblox.com/games/142823291/Murder-Mystery-2" target="_blank" class="play-game-link">Play Game</a>
     </div>
-    <p style="color: var(--text); font-size: 0.8rem; margin-top: 10px;">Please <a href="#" style="color: var(--neon); text-decoration: underline;">login</a> to post a comment.</p>
+
+    <div class="script-code-box">
+      <code id="scriptCode">print("hi")</code>
+      <button onclick="copyCode(this)" class="copy-btn">Copy</button>
+    </div>
+
+    <div class="script-description">
+      <p class="description-title">Description</p>
+      <p class="description-text">Auto Farm, ESP, Tp to Gun, Kill All, Fly, No Clip, Xray, and more! Works best on Solara. V1.5 is here — report bugs or suggest features!</p>
+    </div>
+
+    <div class="script-tags">
+      <p class="tags-title">Tags</p>
+      <div class="tags-list">
+        <span class="tag">mm2</span>
+        <span class="tag">auto</span>
+        <span class="tag">farm</span>
+      </div>
+    </div>
   </div>
 
-  <p style="margin-top: 2rem; font-size: 0.8rem; color: var(--text); opacity: 0.5;">
-    Tags: mm2, Murder Mystery, farm, auto, op, ESP
-  </p>
-</div>
+  <script>
+    function copyCode(btn) {
+      const code = btn.previousElementSibling.innerText;
+      navigator.clipboard.writeText(code);
+      btn.innerText = "Copied!";
+      setTimeout(() => btn.innerText = "Copy", 1500);
+    }
+  </script>
 
-<script>
-  function copyCode() {
-    const code = document.getElementById('codeBox').innerText;
-    navigator.clipboard.writeText(code).then(() => {
-      alert('Script copied to clipboard!');
-    });
-  }
-</script>
+</body>
+</html>
