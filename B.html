@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scripts</title>
+  <style>
+    :root {
+      --accent-color: #00ff00;
+      --background-dark: #000800;
+      --text-color: #ccc;
+      --font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--background-dark);
+      color: var(--text-color);
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      color: var(--accent-color);
+      font-size: 2.5rem;
+    }
+
+    .script-box {
+      background: #001a00;
+      border: 2px solid var(--accent-color);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 15px var(--accent-color);
+    }
+
+    .script-box h2 {
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+
+    .script-meta {
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+    }
+
+    .script-code-box {
+      background: #000;
+      border: 2px solid var(--accent-color);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #00ff00;
+      white-space: pre;
+      overflow-x: auto;
+      position: relative;
+      counter-reset: line;
+    }
+
+    .script-code-box code {
+      display: block;
+    }
+
+    .script-code-box code span {
+      display: block;
+      counter-increment: line;
+    }
+
+    .script-code-box code span::before {
+      content: counter(line) "| ";
+      color: #555;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent-color);
+      color: black;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .back-home-btn {
+      display: block;
+      width: 200px;
+      margin: 0 auto 30px;
+      padding: 15px;
+      background: var(--accent-color);
+      color: black;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px var(--accent-color);
+    }
+
+    .back-home-btn:hover {
+      background: #0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Fly Pad</h1>
+  </header>
+
+  <a href="index.html" class="back-home-btn">Back to Home</a>
+
+  <div class="script-box">
+    <h2>Universal</h2>
+    <p class="script-meta">
+      Uploaded by <span style="color: var(--accent-color); font-weight: bold;">Tixu</span> • ♥
+    </p>
+    <div class="script-code-box">
+      <code id="scriptCode">
+        <span>--uhh its open source so dont be a skid or I'll do legal stuff to u
+          --this is the best script so far
+        loadstring(game:HttpGet("https://pastefy.app/z9IMdnq5/raw"))()
+</span>
+      </code>
+      <button onclick="copyCode(this)" class="copy-btn">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    function copyCode(btn) {
+      const code = Array.from(document.querySelectorAll('#scriptCode span')).map(span => span.textContent).join('\n');
+      navigator.clipboard.writeText(code);
+      btn.innerText = "Copied!";
+      setTimeout(() => btn.innerText = "Copy", 1500000);
+    }
+  </script>
+
+</body>
+</html>
