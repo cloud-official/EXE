@@ -4,14 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Script Display</title>
-  <meta name="description" content="Unique script display page with refined styling and functionality.">
   <style>
     :root {
-      --accent-color: #39FF14;
-      --background-dark: #111;
+      --accent-color: #00ff00;
+      --background-dark: #000800;
       --text-color: #ccc;
-      --border-radius: 12px;
-      --font-family: Arial, sans-serif;
+      --font-family: 'Poppins', sans-serif;
     }
 
     body {
@@ -30,45 +28,54 @@
     header h1 {
       color: var(--accent-color);
       font-size: 2.5rem;
-      margin: 0;
     }
 
     .script-box {
-      background: #222;
+      background: #001a00;
       border: 2px solid var(--accent-color);
-      border-radius: var(--border-radius);
+      border-radius: 12px;
       padding: 20px;
-      margin-bottom: 20px;
       box-shadow: 0 0 15px var(--accent-color);
     }
 
     .script-box h2 {
       color: var(--accent-color);
       font-size: 1.5rem;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     .script-meta {
-      font-size: 0.9rem;
-      color: var(--text-color);
-    }
-
-    .script-meta .username {
-      font-weight: bold;
-      color: var(--accent-color);
+      font-size: 0.8rem;
+      margin-bottom: 20px;
     }
 
     .script-code-box {
-      background: #1a1a1a;
-      padding: 40px;
-      border-radius: var(--border-radius);
-      font-family: monospace;
-      color: #0f0;
-      position: relative;
+      background: #000;
       border: 2px solid var(--accent-color);
-      box-shadow: 0 0 15px var(--accent-color);
-      font-size: 1.5rem;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      padding: 20px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #00ff00;
+      white-space: pre;
+      overflow-x: auto;
+      position: relative;
+      counter-reset: line;
+    }
+
+    .script-code-box code {
+      display: block;
+    }
+
+    .script-code-box code span {
+      display: block;
+      counter-increment: line;
+    }
+
+    .script-code-box code span::before {
+      content: counter(line) "| ";
+      color: #555;
     }
 
     .copy-btn {
@@ -78,61 +85,29 @@
       background: var(--accent-color);
       color: black;
       border: none;
-      padding: 10px 20px;
-      border-radius: var(--border-radius);
+      padding: 8px 16px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .script-description {
-      margin-top: 15px;
-    }
-
-    .description-title {
-      font-weight: bold;
-      color: var(--accent-color);
-      margin-bottom: 5px;
-    }
-
-    .description-text {
-      color: var(--text-color);
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 0.8rem;
-      color: #888;
-    }
-
-    .footer a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
+      font-size: 0.9rem;
     }
 
     .back-home-btn {
       display: block;
       width: 200px;
-      margin: 0 auto 20px;
+      margin: 0 auto 30px;
       padding: 15px;
       background: var(--accent-color);
       color: black;
       text-align: center;
       font-weight: bold;
       text-decoration: none;
-      border-radius: var(--border-radius);
+      border-radius: 12px;
       font-size: 1.2rem;
       box-shadow: 0 0 10px var(--accent-color);
-      transition: background 0.3s, transform 0.2s;
     }
 
     .back-home-btn:hover {
       background: #0f0;
-      transform: scale(1.05);
     }
   </style>
 </head>
@@ -147,25 +122,20 @@
   <div class="script-box">
     <h2>Murder Mystery 2</h2>
     <p class="script-meta">
-      Uploaded by <span class="username">Athergaming</span> • 1 week ago
+      Uploaded by <span style="color: var(--accent-color); font-weight: bold;">Athergaming</span> • 1 week ago
     </p>
     <div class="script-code-box">
-      <code id="scriptCode">print("hi")</code>
+      <code id="scriptCode">
+        <span>print("nah")</span>
+        <span>print("who")</span>
+      </code>
       <button onclick="copyCode(this)" class="copy-btn">Copy</button>
     </div>
-    <div class="script-description">
-      <p class="description-title">Description</p>
-      <p class="description-text">Auto Farm, ESP, Tp to Gun, Kill All, Fly, No Clip, Xray, and more! Works best on Solara. V1.5 is here — report bugs or suggest features!</p>
-    </div>
-  </div>
-
-  <div class="footer">
-    <p>&copy; 2025 Script Display Inc. All rights reserved. | <a href="#">Privacy Policy</a></p>
   </div>
 
   <script>
     function copyCode(btn) {
-      const code = btn.previousElementSibling.innerText;
+      const code = Array.from(document.querySelectorAll('#scriptCode span')).map(span => span.textContent).join('\n');
       navigator.clipboard.writeText(code);
       btn.innerText = "Copied!";
       setTimeout(() => btn.innerText = "Copy", 1500);
