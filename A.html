@@ -58,33 +58,16 @@
       color: var(--accent-color);
     }
 
-    .script-actions a {
-      color: var(--accent-color);
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      background: #333;
-      border: 2px solid var(--accent-color);
-      border-radius: var(--border-radius);
-      text-align: center;
-      transition: background 0.3s, color 0.3s, transform 0.2s;
-    }
-
-    .script-actions a:hover {
-      background: var(--accent-color);
-      color: #000;
-      transform: scale(1.1);
-    }
-
     .script-code-box {
       background: #1a1a1a;
-      padding: 15px;
+      padding: 25px;
       border-radius: var(--border-radius);
       font-family: monospace;
       color: #0f0;
       position: relative;
+      border: 2px solid var(--accent-color);
+      box-shadow: 0 0 15px var(--accent-color);
+      font-size: 1.2rem;
     }
 
     .copy-btn {
@@ -141,9 +124,6 @@
     <p class="script-meta">
       Uploaded by <span class="username">Athergaming</span> • 1 week ago
     </p>
-    <div class="script-actions">
-      <a href="https://www.roblox.com/games/142823291/Murder-Mystery-2" target="_blank">Play Game</a>
-    </div>
     <div class="script-code-box">
       <code id="scriptCode">print("hi")</code>
       <button onclick="copyCode(this)" class="copy-btn">Copy</button>
