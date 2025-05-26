@@ -79,6 +79,7 @@
       display: flex;
       justify-content: center;
       margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
 
     .tab {
@@ -161,6 +162,12 @@
       display: block;
       margin: 10px 0 5px;
     }
+
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -178,6 +185,7 @@
     <div class="tab active" data-tab="tab-1">Home</div>
     <div class="tab" data-tab="tab-2">Scripts</div>
     <div class="tab" data-tab="tab-3">Settings</div>
+    <div class="tab" data-tab="tab-4">Download EXE</div>
   </div>
 
   <div class="tab-content active" id="tab-1">
@@ -212,6 +220,30 @@
         <label for="colorPicker">Choose Neon Color:</label>
         <input type="color" id="colorPicker" value="#00ff00">
       </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-4">
+    <div class="content-wrapper">
+      <h2 style="color: var(--neon);"><i class="fas fa-download"></i> Download Executor (iOS / Android)</h2>
+      <p>Want to run scripts on mobile? Here's how to install the executor for iOS and Android devices:</p>
+
+      <h3 style="color: var(--neon);">iOS (IPA)</h3>
+      <ul>
+        <li>Go to <a href="https://eas.lol/executors" target="_blank" style="color: var(--text); text-decoration: underline;">https://eas.lol/executors</a></li>
+        <li>Then scroll to ios pick the executor</li>
+        <li>Download in esign etc [how to get e sign scroll down]</li>
+      </ul>
+
+      <iframe height="215" src="https://www.youtube.com/embed/qJfkdRMCP6o?si=PBxl1vkDFf1eeKCA"
+        title="how to get esign" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      
+      <iframe height="215" src="https://youtu.be/8yoDWXzjl3U?si=ZvTfPZXM_LizBsiz"
+        title="how to get krnl or other etc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
+      <p style="margin-top: 15px;">Always make sure to use trusted sources when downloading executors to avoid harmful apps.</p>
     </div>
   </div>
 
