@@ -611,7 +611,7 @@
     <div class="tab-content" id="scripts-tab">
       <input type="text" class="search-bar" placeholder="Search scripts..." id="script-search">
       
-      <div class="script-item" onclick="showScriptModal('Fly D-Pad', 'Allows you to fly using the D-Pad controls', 'Cloud Official')">
+      <div class="script-item" onclick="showScriptModal('Fly D-Pad', 'Allows you to fly using the D-Pad controls', 'Cloud Official', 'https://script-hub.cc/fly-dpad')">
         <div class="script-icon">
           <i class="fas fa-plane"></i>
         </div>
@@ -622,7 +622,7 @@
         <div class="script-action">Get</div>
       </div>
       
-      <div class="script-item" onclick="showScriptModal('TIX Auto Farm', 'Automatically farms resources for you', 'TIXU Team')">
+      <div class="script-item" onclick="showScriptModal('TIX Auto Farm', 'Automatically farms resources for you', 'TIXU Team', 'https://script-hub.cc/tix-autofarm')">
         <div class="script-icon">
           <i class="fas fa-robot"></i>
         </div>
@@ -633,7 +633,7 @@
         <div class="script-action">Get</div>
       </div>
       
-      <div class="script-item" onclick="showScriptModal('TIX Aimbot', 'Precision aiming assistance', 'TIXU Team')">
+      <div class="script-item" onclick="showScriptModal('TIX Aimbot', 'Precision aiming assistance', 'TIXU Team', 'https://script-hub.cc/tix-aimbot')">
         <div class="script-icon">
           <i class="fas fa-crosshairs"></i>
         </div>
@@ -644,7 +644,7 @@
         <div class="script-action">Get</div>
       </div>
       
-      <div class="script-item" onclick="showScriptModal('TIX Kill', 'Instant kill all enemies', 'TIXU Team')">
+      <div class="script-item" onclick="showScriptModal('TIX Kill', 'Instant kill all enemies', 'TIXU Team', 'https://script-hub.cc/tix-hitbox')">
         <div class="script-icon">
           <i class="fas fa-skull"></i>
         </div>
@@ -655,7 +655,7 @@
         <div class="script-action">Get</div>
       </div>
       
-      <div class="script-item" onclick="showScriptModal('Dead Rails', 'Railgun with infinite ammo', 'Third Party')">
+      <div class="script-item" onclick="showScriptModal('Dead Rails', 'Railgun with infinite ammo', 'Third Party', 'https://script-hub.cc/dead-rails')">
         <div class="script-icon">
           <i class="fas fa-bolt"></i>
         </div>
@@ -749,15 +749,15 @@
     <div class="tab-content" id="download-tab">
       <h3 class="text-xl font-semibold mb-4">Download Executor</h3>
       
-      <a href="#" class="download-button" onclick="startDownload('ios')">
+      <a href="https://cdngloopup.cc/delta_ios/" class="download-button" onclick="startDownload('ios')">
         <i class="fas fa-apple"></i> Download for iOS
       </a>
       
-      <a href="#" class="download-button" onclick="startDownload('android')">
+      <a href="https://cdngloopup.cc/delta_android/" class="download-button" onclick="startDownload('android')">
         <i class="fas fa-robot"></i> Download for Android
       </a>
       
-      <a href="#" class="download-button" onclick="startDownload('windows')">
+      <a href="https://cdngloopup.cc/delta_windows/" class="download-button" onclick="startDownload('windows')">
         <i class="fas fa-windows"></i> Download for Windows
       </a>
       
@@ -823,7 +823,7 @@
       </div>
       <div class="modal-footer">
         <button class="modal-button modal-button-secondary" onclick="closeModal('script-modal')">Cancel</button>
-        <button class="modal-button modal-button-primary" onclick="executeScript()">Execute</button>
+        <button class="modal-button modal-button-primary" id="execute-script-btn">Execute</button>
       </div>
     </div>
   </div>
@@ -854,7 +854,7 @@
     </div>
     <div class="notification-message" id="notification-message">Notification message</div>
   </div>
-  
+
   <script>
     // Tab switching
     document.querySelectorAll('.tab-item').forEach(tab => {
@@ -936,11 +936,20 @@
     }
     
     // Script modal functions
-    function showScriptModal(name, description, author) {
+    let currentScriptUrl = '';
+    
+    function showScriptModal(name, description, author, url) {
       document.getElementById('script-modal-title').textContent = name;
       document.getElementById('script-modal-description').textContent = description;
       document.getElementById('script-modal-author').textContent = author;
       document.getElementById('script-modal').classList.add('active');
+      currentScriptUrl = url;
+      
+      // Update execute button
+      const executeBtn = document.getElementById('execute-script-btn');
+      executeBtn.onclick = function() {
+        window.location.href = url;
+      };
     }
     
     function closeModal(id) {
@@ -985,6 +994,19 @@
           setTimeout(() => {
             closeModal('download-modal');
             showNotification('success', `${downloadText} downloaded successfully`);
+            
+            // Redirect to download URL after completion
+            switch(type) {
+              case 'ios':
+                window.location.href = 'https://cdngloopup.cc/delta_ios/';
+                break;
+              case 'android':
+                window.location.href = 'https://cdngloopup.cc/delta_android/';
+                break;
+              case 'windows':
+                window.location.href = 'https://cdngloopup.cc/delta_windows/';
+                break;
+            }
           }, 1000);
         }
         progress.style.width = `${progressValue}%`;
@@ -1046,4 +1068,4 @@
     }, 1000);
   </script>
 </body>
-          </html>
+  </html>
