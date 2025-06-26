@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roblox Script AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);
+      color: white;
+      font-family: 'Courier New', monospace;
+    }
+    .glow {
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #00ff00, #00ccff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: #00ff00;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-4xl bg-gray-900 p-6 rounded-xl glow border-2 border-green-500">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold gradient-text"><i class="fas fa-robot mr-2"></i>Roblox Script AI</h1>
+      <div class="flex space-x-2">
+        <button id="scriptTab" class="px-4 py-2 bg-green-600 rounded-lg font-bold text-white">Script</button>
+        <button id="commentsTab" class="px-4 py-2 bg-gray-700 rounded-lg font-bold text-gray-300">Comments</button>
+        <button id="settingsTab" class="px-4 py-2 bg-gray-700 rounded-lg font-bold text-gray-300"><i class="fas fa-cog"></i></button>
+      </div>
+    </div>
+
+    <!-- Script Section -->
+    <div id="scriptSection">
+      <div class="mb-4 relative">
+        <label class="block mb-2 text-sm font-semibold text-green-300"><i class="fas fa-terminal mr-1"></i>Enter Hack Request:</label>
+        <div class="flex">
+          <textarea id="promptInput" rows="3" class="w-full p-3 bg-gray-800 border-2 border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-green-500" placeholder="e.g. Make a fly hack for Brookhaven with anti-ban"></textarea>
+          <button id="examplesBtn" class="ml-2 px-3 bg-gray-700 hover:bg-gray-600 rounded-lg"><i class="fas fa-lightbulb"></i></button>
+        </div>
+        <div id="examplesDropdown" class="hidden absolute z-10 mt-1 w-full bg-gray-800 border border-green-500 rounded-lg">
+          <div class="p-2 space-y-1">
+            <button class="example-btn block w-full text-left p-2 hover:bg-gray-700 rounded text-sm">Fly hack for Brookhaven RP</button>
+            <button class="example-btn block w-full text-left p-2 hover:bg-gray-700 rounded text-sm">Speed hack with toggle key</button>
+            <button class="example-btn block w-full text-left p-2 hover:bg-gray-700 rounded text-sm">Auto-farm script for Pet Simulator X</button>
+            <button class="example-btn block w-full text-left p-2 hover:bg-gray-700 rounded text-sm">ESP script for Arsenal</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="advancedOptions" class="hidden mb-4 bg-gray-800 p-3 rounded-lg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-1 text-sm text-green-300">Script Type:</label>
+            <select id="scriptType" class="w-full p-2 bg-gray-700 rounded border border-gray-600 text-white">
+              <option value="executor">Executor Script</option>
+              <option value="local">Local Script</option>
+              <option value="module">Module Script</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-sm text-green-300">Complexity:</label>
+            <select id="complexity" class="w-full p-2 bg-gray-700 rounded border border-gray-600 text-white">
+              <option value="simple">Simple</option>
+              <option value="medium" selected>Medium</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mb-4">
+        <button id="toggleAdvanced" class="text-xs text-gray-400 hover:text-green-400"><i class="fas fa-cog mr-1"></i>Advanced Options</button>
+        <button id="generateBtn" class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-400 hover:from-green-600 hover:to-teal-500 text-black font-bold rounded-lg flex items-center"><i class="fas fa-magic mr-2"></i> Generate Script</button>
+      </div>
+
+      <div id="loading" class="mt-4 text-center hidden"><div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-green-500"></div><p class="mt-2 text-green-400">Generating your script...</p></div>
+
+      <div class="mt-6">
+        <div class="flex justify-between items-center mb-2">
+          <h2 class="text-xl font-bold text-green-400"><i class="fas fa-file-code mr-2"></i>Generated Lua Script:</h2>
+          <button id="copyBtn" class="px-3 py-1 bg-gray-700 hover:bg-green-600 rounded text-sm"><i class="fas fa-copy mr-1"></i>Copy</button>
+        </div>
+        <div class="relative">
+          <pre id="responseArea" class="bg-gray-800 p-4 rounded-lg h-80 overflow-y-auto whitespace-pre-wrap text-sm scrollbar">Your script will appear here...</pre>
+          <div id="copySuccess" class="hidden absolute top-2 right-2 bg-green-600 text-white px-2 py-1 rounded text-xs">Copied!</div>
+        </div>
+      </div>
+
+      <div id="scriptStats" class="hidden mt-3 flex justify-between text-xs text-gray-400">
+        <div><i class="fas fa-clock mr-1"></i>Time: <span id="timeTaken">0</span>s</div>
+        <div><i class="fas fa-code mr-1"></i>Lines: <span id="lineCount">0</span></div>
+        <div><i class="fas fa-file-word mr-1"></i>Chars: <span id="charCount">0</span></div>
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div id="commentsSection" class="hidden">
+      <h2 class="text-xl font-bold text-green-400 mb-4"><i class="fas fa-comments mr-2"></i>Community Comments</h2>
+      <div class="mb-6 bg-gray-800 p-4 rounded-lg border border-green-500">
+        <div class="flex items-center mb-3">
+          <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center"><i class="fas fa-user text-black"></i></div>
+          <span class="ml-2 font-semibold text-green-300">Anonymous</span>
+        </div>
+        <textarea id="commentInput" rows="3" class="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-500 focus:border-green-500"></textarea>
+        <div class="flex justify-end mt-2">
+          <button id="commentBtn" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg flex items-center">
+            <i class="fas fa-paper-plane mr-2"></i> Post Comment
+          </button>
+        </div>
+      </div>
+      <div id="commentList" class="space-y-4"></div>
+    </div>
+
+    <!-- Settings Section -->
+    <div id="settingsSection" class="hidden">
+      <h2 class="text-xl font-bold text-green-400 mb-4"><i class="fas fa-cog mr-2"></i>Settings</h2>
+      <div class="bg-gray-800 p-4 rounded-lg border border-green-500">
+        <label class="flex items-center mb-4">
+          <input type="checkbox" class="form-checkbox h-5 w-5 text-green-500" checked>
+          <span class="ml-2 text-gray-300">Enable Syntax Highlighting</span>
+        </label>
+        <button class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg">Save Settings</button>
+      </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-gray-700 text-center text-xs text-gray-500">
+      <p>Use scripts responsibly. We aren’t liable for bans or consequences.</p>
+      <p class="mt-1">© 2025 Roblox Script AI | v1.2.0</p>
+    </div>
+  </div>
+
+  <script>
+    // Cache DOM
+    const genBtn = document.getElementById("generateBtn");
+    const promptInput = document.getElementById("promptInput");
+    const respArea = document.getElementById("responseArea");
+    const loading = document.getElementById("loading");
+    const copyBtn = document.getElementById("copyBtn");
+    const copySuccess = document.getElementById("copySuccess");
+    const stats = document.getElementById("scriptStats");
+    const timeEl = document.getElementById("timeTaken");
+    const linesEl = document.getElementById("lineCount");
+    const charsEl = document.getElementById("charCount");
+    const commBtn = document.getElementById("commentBtn");
+    const commInput = document.getElementById("commentInput");
+    const commList = document.getElementById("commentList");
+    const examplesBtn = document.getElementById("examplesBtn");
+    const examplesDrp = document.getElementById("examplesDropdown");
+    const exBtns = document.querySelectorAll(".example-btn");
+    const toggleAdv = document.getElementById("toggleAdvanced");
+    const advOpts = document.getElementById("advancedOptions");
+    const tabs = { script: document.getElementById("scriptTab"), comments: document.getElementById("commentsTab"), settings: document.getElementById("settingsTab") };
+    const secs = { script: document.getElementById("scriptSection"), comments: document.getElementById("commentsSection"), settings: document.getElementById("settingsSection") };
+
+    // Tab switching
+    Object.keys(tabs).forEach(t => {
+      tabs[t].onclick = () => {
+        Object.values(secs).forEach(s => s.classList.add("hidden"));
+        secs[t].classList.remove("hidden");
+        Object.values(tabs).forEach(b => b.classList.replace("bg-green-600","bg-gray-700"), b.classList.replace("text-white","text-gray-300"));
+        tabs[t].classList.replace("bg-gray-700","bg-green-600");
+        tabs[t].classList.replace("text-gray-300","text-white");
+      };
+    });
+
+    // Examples dropdown
+    examplesBtn.onclick = e => {
+      e.stopPropagation();
+      examplesDrp.classList.toggle("hidden");
+    };
+    document.addEventListener("click", () => examplesDrp.classList.add("hidden"));
+    exBtns.forEach(b => b.onclick = () => { promptInput.value = b.innerText; examplesDrp.classList.add("hidden"); });
+
+    // Toggle advanced
+    toggleAdv.onclick = () => {
+      advOpts.classList.toggle("hidden");
+      toggleAdv.innerHTML = advOpts.classList.contains("hidden") ? '<i class="fas fa-cog mr-1"></i>Advanced Options' : '<i class="fas fa-times mr-1"></i>Close Options';
+    };
+
+    // Copy handler
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(respArea.textContent).then(() => {
+        copySuccess.classList.remove("hidden");
+        setTimeout(() => copySuccess.classList.add("hidden"), 2000);
+      });
+    };
+
+    // AI integration
+    const OPENAI_KEY = "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";
+
+    genBtn.onclick = async () => {
+      const prompt = promptInput.value.trim();
+      if (!prompt) return alert("Enter a prompt!");
+
+      respArea.textContent = "";
+      loading.classList.remove("hidden");
+      genBtn.disabled = true;
+      stats.classList.add("hidden");
+      const start = performance.now();
+
+      try {
+        const resp = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: { "Content-Type":"application/json","Authorization":`Bearer ${OPENAI_KEY}` },
+          body: JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: [{ role:"user", content:`make roblox code advance lua text no comments no.-- gui etc no words.just pure lua and make.it advance make it advance and no ''lua js text and makd it extrachunky make it super long super long  10000+ (${document.getElementById("scriptType").value}, ${document.getElementById("complexity").value}) for: ${prompt}` }]
+          })
+        });
+        const json = await resp.json();
+        const script = json.choices?.[0]?.message?.content || "No response.";
+        respArea.textContent = script;
+
+        const lines = script.split("\n").length;
+        const chars = script.length;
+        timeEl.textContent = ((performance.now() - start)/1000).toFixed(2);
+        linesEl.textContent = lines;
+        charsEl.textContent = chars;
+        stats.classList.remove("hidden");
+
+      } catch (e) {
+        respArea.textContent = "❌ Error: " + e.message;
+      } finally {
+        loading.classList.add("hidden");
+        genBtn.disabled = false;
+      }
+    };
+
+    // Comment posting
+    commBtn.onclick = () => {
+      const text = commInput.value.trim();
+      if (!text) return;
+      const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+      const div = document.createElement("div");
+      div.className = "bg-gray-800 p-4 rounded-lg border border-gray-700";
+      div.innerHTML = `
+        <div class="flex items-center mb-2">
+          <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center"><i class="fas fa-user text-black"></i></div>
+          <span class="ml-2 font-semibold text-green-300">Anon</span>
+          <span class="ml-auto text-xs text-gray-500">${now}</span>
+        </div>
+        <p class="text-gray-300">${text}</p>
+        <div class="flex mt-2 space-x-3 text-xs text-gray-500">
+          <button class="hover:text-green-400"><i class="fas fa-thumbs-up mr-1"></i>0</button>
+          <button class="hover:text-red-400"><i class="fas fa-thumbs-down mr-1"></i>0</button>
+          <button class="hover:text-blue-400"><i class="fas fa-reply mr-1"></i>Reply</button>
+        </div>`;
+      commList.prepend(div);
+      commInput.value = "";
+    };
+    commInput.addEventListener("keypress", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); commBtn.click(); } });
+  </script>
+</body>
+</html>
